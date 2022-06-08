@@ -31,6 +31,29 @@ $(document).on("click",".ip",()=>{
 	},1000);
 });
 
+
+let t;
+$(document).ready(()=>{
+	t = $(".ip2").html();
+})
+$(document).on("click",".ip2",()=>{
+	let copy = document.createElement("textarea");
+	copy.style.position = "absolute";
+	copy.style.left = "-99999px";
+	copy.style.top = "0";
+	copy.setAttribute("id", "ta");
+	document.body.appendChild(copy);
+	copy.textContent = t;
+	copy.select();
+	document.execCommand("copy");
+	$(".ip").html("<span class='extrapad'>IP copied!</span>");
+	setTimeout(function(){
+		$(".ip").html(t);
+		var copy = document.getElementById("ta");
+		copy.parentNode.removeChild(copy);
+	},1000);
+});
+
 // This is to fetch the player count
 $(document).ready(()=>{
   const ip = $(".sip").attr("data-ip");
